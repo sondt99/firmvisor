@@ -1,0 +1,10 @@
+capstone
+lief
+pyelftools
+click
+numpy
+scipy
+binwalk
+rich
+modules
+python-magic-bin
