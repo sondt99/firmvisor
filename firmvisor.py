@@ -11,6 +11,9 @@ from modules.entropy import entropy_scan
 from modules.strings import extract_strings
 from modules.reporter import save_report
 from modules.filetype import detect_file_type
+from modules.analysis import analyze_entropy, detect_compression
+from modules.sections import analyze_sections
+from modules.functions import analyze_functions
 
 # ========== CLI ==========
 def main():
@@ -18,6 +21,9 @@ def main():
     parser.add_argument("file", help="Firmware binary path")
     parser.add_argument("--strings", action="store_true", help="Extract printable strings")
     parser.add_argument("--entropy", action="store_true", help="Perform entropy analysis")
+    parser.add_argument("--sections", action="store_true", help="Analyze sections and segments")
+    parser.add_argument("--functions", action="store_true", help="Analyze functions")
+    parser.add_argument("--all", action="store_true", help="Perform all analyses")
     parser.add_argument("--output", help="Save report to file (JSON)")
 
     args = parser.parse_args()
@@ -30,14 +36,25 @@ def main():
     print(f"[bold cyan]Analyzing: {fpath}[/bold cyan]")
     report = analyze_header(fpath)
     report["file_type"] = detect_file_type(fpath)
-
-    if args.strings:
+    
+    if args.all or args.sections:
+        print("[green]Analyzing sections...")
+        report["sections"] = analyze_sections(fpath)
+        
+    if args.all or args.functions:
+        print("[green]Analyzing functions...")
+        report["functions"] = analyze_functions(fpath)
+        
+    if args.all or args.strings:
         print("[green]Extracting strings...")
         report["strings"] = extract_strings(fpath)
-
-    if args.entropy:
-        print("[green]Calculating entropy...")
-        report["entropy"] = entropy_scan(fpath)
+        
+    if args.all or args.entropy:
+        print("[green]Analyzing entropy...")
+        with open(fpath, 'rb') as f:
+            data = f.read()
+        report["entropy"] = analyze_entropy(data)
+        report["compression"] = detect_compression(fpath)
 
     if args.output:
         save_report(report, args.output)
