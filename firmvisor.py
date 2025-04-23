@@ -14,6 +14,7 @@ from modules.filetype import detect_file_type
 from modules.analysis import analyze_entropy, detect_compression
 from modules.sections import analyze_sections
 from modules.functions import analyze_functions
+from modules.binwalk_analysis import run_binwalk
 
 # ========== CLI ==========
 def main():
@@ -23,6 +24,7 @@ def main():
     parser.add_argument("--entropy", action="store_true", help="Perform entropy analysis")
     parser.add_argument("--sections", action="store_true", help="Analyze sections and segments")
     parser.add_argument("--functions", action="store_true", help="Analyze functions")
+    parser.add_argument("--binwalk", action="store_true", help="Run binwalk analysis")
     parser.add_argument("--all", action="store_true", help="Perform all analyses")
     parser.add_argument("--output", help="Save report to file (JSON)")
 
@@ -55,6 +57,10 @@ def main():
             data = f.read()
         report["entropy"] = analyze_entropy(data)
         report["compression"] = detect_compression(fpath)
+    
+    if args.all:
+        print("[green]Running binwalk...")
+        report["binwalk"] = run_binwalk(fpath)
 
     if args.output:
         save_report(report, args.output)
