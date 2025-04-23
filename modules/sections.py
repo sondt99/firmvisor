@@ -7,31 +7,18 @@ def analyze_sections(path):
         with open(path, 'rb') as f:
             elf = ELFFile(f)
             sections = {}
-            
-            # Analyze sections
+
             for section in elf.iter_sections():
                 info = {
-                    'size': section['sh_size'],
-                    'addr': section['sh_addr'],
-                    'type': section['sh_type'],
-                    'flags': section['sh_flags']
+                    "name": section.name,
+                    "type": section["sh_type"],
+                    "addr": hex(section["sh_addr"]),
+                    "offset": hex(section["sh_offset"]),
+                    "size": section["sh_size"],
+                    "flags": section["sh_flags"]
                 }
-                
-                # Get symbols if available
-                if isinstance(section, SymbolTableSection):
-                    symbols = []
-                    for sym in section.iter_symbols():
-                        if sym.name:
-                            symbols.append({
-                                'name': sym.name,
-                                'addr': sym['st_value'],
-                                'size': sym['st_size'],
-                                'type': sym['st_info']['type']
-                            })
-                    info['symbols'] = symbols
-                
                 sections[section.name] = info
-                
+
             return sections
     except Exception as e:
         return f"Section analysis failed: {e}"
