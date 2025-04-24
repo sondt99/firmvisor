@@ -1,4 +1,4 @@
 *.json
 *.pyc
 /firmware
-firmvisor.log
+*.log
