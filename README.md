@@ -1,22 +1,22 @@
 
-# 🛠️ firmvisor
+# firmvisor
 
 **firmvisor** is a Python-based static analysis tool for inspecting IoT firmware images.  
 It supports both **filesystem-based** and **RTOS-based** (e.g., FreeRTOS, Zephyr) firmware, offering modular analysis features such as:
 
-- 📦 Binary filetype and header parsing  
-- 🧠 Interrupt vector table analysis  
-- 🔐 Entropy scanning for encryption/compression  
-- 🧵 String extraction (ASCII, Unicode)  
-- 🧬 Compiler and architecture inference  
-- 🧰 Integration with Binwalk for embedded filesystem extraction
+- Binary filetype and header parsing  
+- Interrupt vector table analysis  
+- Entropy scanning for encryption/compression  
+- String extraction (ASCII, Unicode)  
+- Compiler and architecture inference  
+- Integration with Binwalk for embedded filesystem extraction
 
 ---
 
-## 🚀 Features
+## Features
 
 | Feature                    | Description                                                   |
-|---------------------------|---------------------------------------------------------------|
+|----------------------------|---------------------------------------------------------------|
 | Filetype Detection         | Detect ELF, PE, raw bin, squashfs, compressed archives        |
 | Header Analysis            | Parse ELF/PE headers: entry point, sections, arch, endianness |
 | Interrupt Vector Analysis  | Extract and identify vector tables in bare-metal firmware     |
@@ -28,7 +28,7 @@ It supports both **filesystem-based** and **RTOS-based** (e.g., FreeRTOS, Zephyr
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### 🔹 1. Clone the repository
 ```bash
@@ -60,7 +60,7 @@ sudo apt install libmagic1
 
 ---
 
-## 🧪 Usage
+## Usage
 
 ### 🔹 Help:
 ```bash
@@ -84,7 +84,7 @@ python3 firmvisor.py firmware/firmware.bin --all
 
 ---
 
-## 🧩 Output Example
+## Output Example
 
 ```json
 {
@@ -107,7 +107,7 @@ python3 firmvisor.py firmware/firmware.bin --all
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 firmvisor/
@@ -129,7 +129,7 @@ firmvisor/
 
 ---
 
-## 🌱 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to:
 - Submit issues or bugs
@@ -140,7 +140,7 @@ For large contributions, please open an issue first to discuss.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License**.  
 See the [LICENSE](LICENSE) file for details.
