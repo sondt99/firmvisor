@@ -1,0 +1,6 @@
+2025-04-24 16:30:24,038 - INFO - Started analysis on firmware/firmware.bin
+2025-04-24 16:30:25,300 - INFO - binwalk analysis complete.
+2025-04-24 16:30:25,302 - INFO - sections analysis complete.
+2025-04-24 16:30:25,464 - INFO - strings analysis complete.
+2025-04-24 16:30:25,603 - INFO - entropy_block analysis complete.
+2025-04-24 16:30:25,644 - INFO - Default report saved to report.json
