@@ -32,7 +32,7 @@ It supports both **filesystem-based** and **RTOS-based** (e.g., FreeRTOS, Zephyr
 
 ### 🔹 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/firmvisor.git
+git clone https://github.com/sondt99/firmvisor.git
 cd firmvisor
 ```
 
